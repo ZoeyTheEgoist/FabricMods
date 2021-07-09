@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trirev:trident"
+    ]
+  },
+  "criteria": {
+    "has_elder_fragment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "trirev:elder_fragment"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trirev:trident"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_elder_fragment",
+      "has_the_recipe"
+    ]
+  ]
+}

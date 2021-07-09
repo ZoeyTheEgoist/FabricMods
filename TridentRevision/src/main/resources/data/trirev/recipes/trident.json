@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " XX",
+    " #X",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "X": {
+      "item": "trirev:elder_fragment"
+    }
+  },
+  "result": {
+    "item": "minecraft:trident"
+  }
+}
