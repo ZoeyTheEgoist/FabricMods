@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.astrazoey.universal.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "SilkTouchEnchantmentMixin",
+    "LuckEnchantmentMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

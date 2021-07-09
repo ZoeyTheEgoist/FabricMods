@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "scorch",
+  "version": "${version}",
+
+  "name": "Scorch",
+  "description": "Revises some parts of the nether. Adds Pyrack and Ignistone.",
+  "authors": [
+    "Astrazoey"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "MIT",
+  "icon": "assets/scorch/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.astrazoey.scorch.GunpowderRevision"
+    ]
+  },
+  "mixins": [
+    "scorch.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

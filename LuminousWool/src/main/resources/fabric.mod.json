@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "lumiwool",
+  "version": "${version}",
+
+  "name": "Luminous Wool",
+  "description": "Apply glow ink to wool to make it emissive.",
+  "authors": [
+    "Astrazoey",
+    "Gegy"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/luminous-wool",
+    "sources": ""
+  },
+
+  "license": "MIT",
+  "icon": "assets/lumiwool/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.astrazoey.luminouswool.LuminousWool"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

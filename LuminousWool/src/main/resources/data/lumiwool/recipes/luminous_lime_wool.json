@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_ink_sac"
+    },
+    {
+      "item": "minecraft:lime_wool"
+    }
+  ],
+  "result": {
+    "item": "lumiwool:luminous_lime_wool"
+  }
+}

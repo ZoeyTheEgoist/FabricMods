@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "scorch:block/primed_pyrack"
+      },
+      {
+        "model": "scorch:block/primed_pyrack",
+        "x": 90
+      },
+      {
+        "model": "scorch:block/primed_pyrack",
+        "x": 180
+      },
+      {
+        "model": "scorch:block/primed_pyrack",
+        "x": 270
+      },
+      {
+        "y": 90,
+        "model": "scorch:block/primed_pyrack"
+      },
+      {
+        "y": 90,
+        "model": "scorch:block/primed_pyrack",
+        "x": 90
+      },
+      {
+        "y": 90,
+        "model": "scorch:block/primed_pyrack",
+        "x": 180
+      },
+      {
+        "y": 90,
+        "model": "scorch:block/primed_pyrack",
+        "x": 270
+      },
+      {
+        "y": 180,
+        "model": "scorch:block/primed_pyrack"
+      },
+      {
+        "y": 180,
+        "model": "scorch:block/primed_pyrack",
+        "x": 90
+      },
+      {
+        "y": 180,
+        "model": "scorch:block/primed_pyrack",
+        "x": 180
+      },
+      {
+        "y": 180,
+        "model": "scorch:block/primed_pyrack",
+        "x": 270
+      },
+      {
+        "y": 270,
+        "model": "scorch:block/primed_pyrack"
+      },
+      {
+        "y": 270,
+        "model": "scorch:block/primed_pyrack",
+        "x": 90
+      },
+      {
+        "y": 270,
+        "model": "scorch:block/primed_pyrack",
+        "x": 180
+      },
+      {
+        "y": 270,
+        "model": "scorch:block/primed_pyrack",
+        "x": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "unitool",
+  "version": "${version}",
+
+  "name": "Mattock",
+  "description": "Adds the Mattock - a universal digger for Minecraft.",
+  "authors": [
+    "Astrazoey",
+    "edmord",
+    "Gegy",
+    "Snorps",
+    "Cameron"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/unitool/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.astrazoey.universal.UniversalTool"
+    ]
+  },
+  "mixins": [
+    "unitool.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
