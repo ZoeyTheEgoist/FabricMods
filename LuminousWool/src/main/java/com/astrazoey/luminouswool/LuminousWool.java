@@ -2,26 +2,22 @@ package com.astrazoey.luminouswool;
 
 import com.astrazoey.luminouswool.registry.LuminousWoolBlocks;
 import com.astrazoey.luminouswool.registry.LuminousWoolItems;
-import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableMap;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.particle.GlowParticle;
-import net.minecraft.client.particle.Particle;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 
-import java.util.List;
-import java.util.Map;
 
 public class LuminousWool implements ModInitializer {
 
@@ -54,9 +50,7 @@ public class LuminousWool implements ModInitializer {
         LuminousWoolItems.registerItems();
 
         UseBlockCallback.EVENT.register((player, world, hand, hitresult) -> {
-            if (/*player.isHolding(Items.GLOW_INK_SAC)*/player.getStackInHand(hand).getItem() == Items.GLOW_INK_SAC) {
-
-                //player.getItemsHand();
+            if (player.getStackInHand(hand).getItem() == Items.GLOW_INK_SAC) {
 
                 var pos = hitresult.getBlockPos();
                 var block = world.getBlockState(pos);
@@ -70,21 +64,19 @@ public class LuminousWool implements ModInitializer {
                         world.setBlockState(pos, WOOL_TO_LUMINOUS_WOOL.get(block.getBlock()).getDefaultState());
 
                         //Particle and Sound
-                        world.playSound(null, pos, SoundEvents.ENTITY_SLIME_DEATH, SoundCategory.BLOCKS, 1f, 2f);
+                        world.playSound(null, pos, SoundEvents.ITEM_GLOW_INK_SAC_USE, SoundCategory.BLOCKS, 1f, 0.8f);
                         world.syncWorldEvent(player, 3005, pos, 1);
 
-                        /*
-                        if(world.isClient) {
-                            for (int i = 0; i <= 50; i++) {
-                                world.addParticle(ParticleTypes.GLOW_SQUID_INK, pos.getX(), pos.getY(), pos.getZ(), 0.0d, 0.0d, 0.0d);
-
-
-                            }
-                        }*/
+                        //Stats and Advancements
+                        ItemStack heldItem = player.getStackInHand(hand);
+                        Item item = heldItem.getItem();
+                        player.incrementStat(Stats.USED.getOrCreateStat(item));
+                        if (player instanceof ServerPlayerEntity) {
+                            Criteria.ITEM_USED_ON_BLOCK.test((ServerPlayerEntity)player, pos, heldItem);
+                        }
 
                         //Decrement Glow Ink if not in creative mode
                         if(!player.isCreative()) {
-                            ItemStack heldItem = player.getStackInHand(hand);
                             heldItem.decrement(1);
                         }
 
@@ -94,7 +86,6 @@ public class LuminousWool implements ModInitializer {
                     }
                 }
             } else {
-                System.out.println("no glow ink");
                 return ActionResult.PASS;
             }
 

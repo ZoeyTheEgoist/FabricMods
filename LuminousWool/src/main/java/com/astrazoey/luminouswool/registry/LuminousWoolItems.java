@@ -1,7 +1,6 @@
 package com.astrazoey.luminouswool.registry;
 
 import com.astrazoey.luminouswool.LuminousWool;
-import net.minecraft.block.BedBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -10,7 +9,6 @@ import net.minecraft.util.registry.Registry;
 
 public class LuminousWoolItems {
 
-    //public static final BlockItem LUMINOUS_WHITE_BED = new BlockItem(LuminousWoolBlocks.LUMINOUS_WHITE_BED, new Item.Settings().group(ItemGroup.DECORATIONS));
 
     public static final BlockItem LUMINOUS_WHITE_WOOL = new BlockItem(LuminousWoolBlocks.LUMINOUS_WHITE_WOOL, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
     public static final BlockItem LUMINOUS_ORANGE_WOOL = new BlockItem(LuminousWoolBlocks.LUMINOUS_ORANGE_WOOL, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
@@ -30,9 +28,6 @@ public class LuminousWoolItems {
     public static final BlockItem LUMINOUS_BLACK_WOOL = new BlockItem(LuminousWoolBlocks.LUMINOUS_BLACK_WOOL, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static void registerItems() {
-
-        //Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_white_bed"), LUMINOUS_WHITE_BED);
-
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_white_wool"), LUMINOUS_WHITE_WOOL);
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_orange_wool"), LUMINOUS_ORANGE_WOOL);
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_magenta_wool"), LUMINOUS_MAGENTA_WOOL);

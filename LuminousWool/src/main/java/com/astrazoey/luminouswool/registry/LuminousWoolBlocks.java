@@ -50,9 +50,6 @@ public class LuminousWoolBlocks {
 
 
     public static void registerBlocks() {
-
-        //Registry.register(Registry.BLOCK, new Identifier(LuminousWool.MOD_ID, "luminous_white_bed"), LUMINOUS_WHITE_BED);
-
         Registry.register(Registry.BLOCK, new Identifier(LuminousWool.MOD_ID, "luminous_white_wool"), LUMINOUS_WHITE_WOOL);
         Registry.register(Registry.BLOCK, new Identifier(LuminousWool.MOD_ID, "luminous_orange_wool"), LUMINOUS_ORANGE_WOOL);
         Registry.register(Registry.BLOCK, new Identifier(LuminousWool.MOD_ID, "luminous_magenta_wool"), LUMINOUS_MAGENTA_WOOL);
