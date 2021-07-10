@@ -1,15 +1,15 @@
 package com.astrazoey.universal;
 
-import com.astrazoey.universal.registry.ModItems;
+import com.astrazoey.universal.registry.MattockItemRegistry;
 import net.fabricmc.api.ModInitializer;
 
-public class UniversalTool implements ModInitializer {
+public class MattockMain implements ModInitializer {
 
     public static final String MOD_ID = "unitool";
 
     @Override
     public void onInitialize() {
-        ModItems.registerItems();
+        MattockItemRegistry.registerItems();
     }
 
 }

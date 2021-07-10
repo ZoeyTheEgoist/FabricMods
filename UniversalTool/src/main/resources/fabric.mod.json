@@ -23,7 +23,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.astrazoey.universal.UniversalTool"
+      "com.astrazoey.universal.MattockMain"
     ]
   },
   "mixins": [
