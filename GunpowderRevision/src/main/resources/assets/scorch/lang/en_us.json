@@ -1,4 +1,7 @@
 {
   "block.scorch.pyrack" : "Pyrack",
-  "block.scorch.ignistone" : "Ignistone"
+  "block.scorch.ignistone" : "Ignistone",
+  "subtitles.scorch.apply_magma_to_strider": "Strider hair gelled",
+  "subtitles.scorch.ignistone_drops_lava": "Ignistone bursts",
+  "subtitles.scorch.pyrack_ignites": "Pyrack ignites"
 }

@@ -1,10 +1,16 @@
 package com.astrazoey.scorch;
+import com.astrazoey.scorch.criterion.ShearStriderCriterion;
+import com.astrazoey.scorch.mixins.CriterionRegistryAccessor;
 import com.astrazoey.scorch.registry.GunpowderRevisionBlocks;
 import com.astrazoey.scorch.registry.GunpowderRevisionItems;
+import com.astrazoey.scorch.registry.GunpowderRevisionSounds;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -22,6 +28,7 @@ public class GunpowderRevision implements ModInitializer {
     public static final String MOD_ID = "scorch";
 
 
+
     public static final ConfiguredFeature<?,?> PYRACK_CONFIGURED_LOW = Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, GunpowderRevisionBlocks.PYRACK.getDefaultState(),
             27))
             .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(UniformHeightProvider.create(
@@ -37,6 +44,7 @@ public class GunpowderRevision implements ModInitializer {
                     YOffset.fixed(120)))))
             .spreadHorizontally()
             .repeat(7);
+    private ShearStriderCriterion shearStrider;
 
     @Override
     public void onInitialize() {
@@ -44,7 +52,9 @@ public class GunpowderRevision implements ModInitializer {
         //Registration
         GunpowderRevisionBlocks.registerBlocks();
         GunpowderRevisionItems.registerItems();
+        GunpowderRevisionSounds.registerSounds();
 
+        CriterionRegistryAccessor.registerCriterion(shearStrider);
 
         //Ore Generation
         RegistryKey<ConfiguredFeature<?, ?>> pyrackLow = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,

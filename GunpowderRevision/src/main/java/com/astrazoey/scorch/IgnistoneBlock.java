@@ -1,5 +1,6 @@
 package com.astrazoey.scorch;
 
+import com.astrazoey.scorch.registry.GunpowderRevisionSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -29,9 +30,10 @@ public class IgnistoneBlock extends Block {
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         ItemStack stack = player.getMainHandStack();
         if ((EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) && (!player.isCreative())) {
-            world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0f, 0.75f, true);
+            world.playSound(pos.getX(), pos.getY(), pos.getZ(), GunpowderRevisionSounds.IGNISTONE_DROPS_LAVA_EVENT, SoundCategory.BLOCKS, 1.0f, 0.75f, true);
         }
         super.onBreak(world,pos,state,player);
+
     }
 
 

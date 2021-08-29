@@ -1,0 +1,20 @@
+{
+  "apply_magma_to_strider": {
+    "subtitle": "subtitles.scorch.apply_magma_to_strider",
+    "sounds": [
+      "scorch:apply_magma_to_strider"
+    ]
+  },
+  "ignistone_drops_lava": {
+    "subtitle": "subtitles.scorch.ignistone_drops_lava",
+    "sounds": [
+      "scorch:ignistone_drops_lava"
+    ]
+  },
+  "pyrack_ignites": {
+    "subtitle": "subtitles.scorch.pyrack_ignites",
+    "sounds": [
+      "scorch:pyrack_ignites"
+    ]
+  }  
+}

@@ -1,5 +1,6 @@
 package com.astrazoey.scorch;
 
+import com.astrazoey.scorch.registry.GunpowderRevisionSounds;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -92,7 +93,7 @@ public class PyrackBlock extends OreBlock {
     }
 
     public static void prime(World world, BlockPos pos) {
-        world.playSound(null, pos, SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.BLOCKS, 1.0f, 2.0f);
+        world.playSound(null, pos, GunpowderRevisionSounds.PYRACK_IGNITES_EVENT, SoundCategory.BLOCKS, 1.0f, 2.0f);
         world.setBlockState(pos, GunpowderRevisionBlocks.PRIMED_PYRACK.getDefaultState());
     }
 
