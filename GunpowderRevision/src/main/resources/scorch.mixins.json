@@ -8,7 +8,11 @@
     "CryingObsidianBlockMixin",
     "FireBlockMixin",
     "NoiseChunkGeneratorMixin",
-    "StructuresConfigAccessor"
+    "StructuresConfigAccessor",
+    "BackgroundRendererMixin",
+    "StriderEntityMixin",
+    "StriderEntityRendererMixin",
+    "CriterionRegistryAccessor"
   ],
   "client": [
   ],

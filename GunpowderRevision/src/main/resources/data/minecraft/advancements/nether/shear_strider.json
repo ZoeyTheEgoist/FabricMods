@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:nether/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:shears"
+    },
+    "title": {
+      "translate": "advancements.nether.shear_strider.title"
+    },
+    "description": {
+      "translate": "advancements.nether.shear_strider.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shear_strider": {
+      "trigger": "scorch:shear_strider"
+    }
+  },
+  "requirements": [
+    [
+      "shear_strider"
+    ]
+  ]
+}
