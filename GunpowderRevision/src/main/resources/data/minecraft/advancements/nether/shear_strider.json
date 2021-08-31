@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:nether/root",
+  "parent": "minecraft:nether/style_strider",
   "display": {
     "icon": {
       "item": "minecraft:shears"
@@ -17,7 +17,7 @@
   },
   "criteria": {
     "shear_strider": {
-      "trigger": "scorch:shear_strider"
+      "trigger": "minecraft:shear_strider"
     }
   },
   "requirements": [

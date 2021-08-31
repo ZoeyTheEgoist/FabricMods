@@ -3,5 +3,13 @@
   "block.scorch.ignistone" : "Ignistone",
   "subtitles.scorch.apply_magma_to_strider": "Strider hair gelled",
   "subtitles.scorch.ignistone_drops_lava": "Ignistone bursts",
-  "subtitles.scorch.pyrack_ignites": "Pyrack ignites"
+  "subtitles.scorch.pyrack_ignites": "Pyrack ignites",
+  "advancements.nether.shear_strider.title": "Strider With No Brim",
+  "advancements.nether.shear_strider.description": "Use shears to give a strider a haircut.",
+  "advancements.nether.style_strider.title": "Short Back & Strides",
+  "advancements.nether.style_strider.description": "Use magma cream to gel a Strider's hair.",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.title": "Advanced Pyrotechnics",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.description": "Use a flaming projectile to detonate Pyrack.",
+  "advancements.nether.obtain_ignistone.title": "Lava Safety",
+  "advancements.nether.obtain_ignistone.description": "Mine and collect ignistone with silk touch to prevent it from bursting."
 }

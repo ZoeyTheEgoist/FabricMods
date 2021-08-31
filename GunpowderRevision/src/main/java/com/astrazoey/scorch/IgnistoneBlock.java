@@ -11,6 +11,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -42,6 +43,10 @@ public class IgnistoneBlock extends Block {
         super.afterBreak(world, player, pos, state, blockEntity, stack);
         if ((EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) && (!player.isCreative())) {
             placeLava(world, pos);
+        } else if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) > 0) {
+            if (player instanceof ServerPlayerEntity) {
+                GunpowderRevision.MINE_IGNISTONE.trigger((ServerPlayerEntity)player);
+            }
         }
     }
 

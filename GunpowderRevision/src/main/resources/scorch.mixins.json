@@ -12,7 +12,8 @@
     "BackgroundRendererMixin",
     "StriderEntityMixin",
     "StriderEntityRendererMixin",
-    "CriterionRegistryAccessor"
+    "CriterionRegistryAccessor",
+    "PiglinBrainMixin"
   ],
   "client": [
   ],

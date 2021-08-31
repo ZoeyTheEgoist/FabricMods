@@ -19,8 +19,8 @@ public class GunpowderRevisionStructures {
         FabricStructureBuilder.create(new Identifier(GunpowderRevision.MOD_ID, "debug_structure"), DEBUG_STRUCTURE)
                 .step(GenerationStep.Feature.UNDERGROUND_STRUCTURES)
                 .defaultConfig(new StructureConfig(
-                        7, //distance apart in chunks
-                        5, //minimum distance apart in chunks
+                        9, //distance apart in chunks
+                        7, //minimum distance apart in chunks
                         452782645 //structure seed to prevent structures spawning over each other
                 ))
                 .superflatFeature(DEBUG_STRUCTURE.configure(FeatureConfig.DEFAULT))
@@ -30,8 +30,8 @@ public class GunpowderRevisionStructures {
         FabricStructureBuilder.create(new Identifier(GunpowderRevision.MOD_ID, "debris_structure"), DEBRIS_STRUCTURE)
                 .step(GenerationStep.Feature.UNDERGROUND_STRUCTURES)
                 .defaultConfig(new StructureConfig(
-                        8, //distance apart in chunks
-                        7, //minimum distance apart in chunks
+                        11, //distance apart in chunks
+                        8, //minimum distance apart in chunks
                         655703111 //structure seed to prevent structures spawning over each other
                 ))
                 .superflatFeature(DEBRIS_STRUCTURE.configure(FeatureConfig.DEFAULT))

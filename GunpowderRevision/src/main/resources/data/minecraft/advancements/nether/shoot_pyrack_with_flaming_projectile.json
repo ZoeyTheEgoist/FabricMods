@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:nether/root",
+  "display": {
+    "icon": {
+      "item": "scorch:pyrack"
+    },
+    "title": {
+      "translate": "advancements.nether.shoot_pyrack_with_flaming_projectile.title"
+    },
+    "description": {
+      "translate": "advancements.nether.shoot_pyrack_with_flaming_projectile.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shoot_pyrack_with_flaming_projectile": {
+      "trigger": "minecraft:shoot_pyrack"
+    }
+  },
+  "requirements": [
+    [
+      "shoot_pyrack_with_flaming_projectile"
+    ]
+  ]
+}

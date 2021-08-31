@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -56,8 +57,14 @@ public class PyrackBlock extends OreBlock {
             Entity entity = projectile.getOwner();
 
 
+
             if (projectile.isOnFire() && projectile.canModifyAt(world, blockPos)) {
                 prime(world, blockPos);
+
+                if (entity instanceof ServerPlayerEntity) {
+                    GunpowderRevision.SHOOT_PYRACK.trigger((ServerPlayerEntity)entity);
+                }
+
             }
         }
     }

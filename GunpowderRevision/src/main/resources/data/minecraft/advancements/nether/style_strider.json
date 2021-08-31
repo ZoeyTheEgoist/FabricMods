@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:nether/ride_strider",
+  "display": {
+    "icon": {
+      "item": "minecraft:magma_cream"
+    },
+    "title": {
+      "translate": "advancements.nether.style_strider.title"
+    },
+    "description": {
+      "translate": "advancements.nether.style_strider.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "style_strider": {
+      "trigger": "minecraft:style_strider"
+    }
+  },
+  "requirements": [
+    [
+      "style_strider"
+    ]
+  ]
+}

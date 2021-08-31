@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:nether/obtain_ancient_debris",
+  "display": {
+    "icon": {
+      "item": "scorch:ignistone"
+    },
+    "title": {
+      "translate": "advancements.nether.obtain_ignistone.title"
+    },
+    "description": {
+      "translate": "advancements.nether.obtain_ignistone.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mine_ignistone": {
+      "trigger": "minecraft:mine_ignistone"
+    }
+  },
+  "requirements": [
+    [
+      "mine_ignistone"
+    ]
+  ]
+}

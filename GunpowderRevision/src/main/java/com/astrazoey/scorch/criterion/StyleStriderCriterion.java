@@ -1,28 +1,26 @@
 package com.astrazoey.scorch.criterion;
 
-import com.astrazoey.scorch.mixins.StriderEntityMixin;
 import com.google.gson.JsonObject;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.predicate.DamagePredicate;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-public class ShearStriderCriterion extends AbstractCriterion<com.astrazoey.scorch.criterion.ShearStriderCriterion.Conditions> {
+public class StyleStriderCriterion extends AbstractCriterion<StyleStriderCriterion.Conditions> {
 
-    static final Identifier ID = new Identifier("shear_strider");
+    static final Identifier ID = new Identifier("style_strider");
 
     @Override
     public Identifier getId() {
         return ID;
     }
 
-    public ShearStriderCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended player, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+    public StyleStriderCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended player, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
         EntityPredicate.Extended strider = EntityPredicate.Extended.getInJson(jsonObject, "strider", advancementEntityPredicateDeserializer);
-        return new ShearStriderCriterion.Conditions(player, strider);
+        return new StyleStriderCriterion.Conditions(player, strider);
     }
 
     public void trigger(ServerPlayerEntity player) {
@@ -37,12 +35,12 @@ public class ShearStriderCriterion extends AbstractCriterion<com.astrazoey.scorc
         private final EntityPredicate.Extended strider;
 
         public Conditions(EntityPredicate.Extended player, EntityPredicate.Extended strider) {
-            super(ShearStriderCriterion.ID, player);
+            super(StyleStriderCriterion.ID, player);
             this.strider = strider;
         }
 
-        public static ShearStriderCriterion.Conditions create() {
-            return new ShearStriderCriterion.Conditions(EntityPredicate.Extended.EMPTY, EntityPredicate.Extended.EMPTY);
+        public static StyleStriderCriterion.Conditions create() {
+            return new StyleStriderCriterion.Conditions(EntityPredicate.Extended.EMPTY, EntityPredicate.Extended.EMPTY);
         }
 
         public boolean matches(ServerPlayerEntity player) {

@@ -1,10 +1,15 @@
 package com.astrazoey.scorch.mixins;
 
+import com.astrazoey.scorch.GunpowderRevision;
 import com.astrazoey.scorch.StriderHairInterface;
+import com.astrazoey.scorch.StriderInteractInterface;
+import com.astrazoey.scorch.criterion.ShearStriderCriterion;
 import com.astrazoey.scorch.registry.GunpowderRevisionSounds;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.advancement.criterion.Criterion;
 import net.minecraft.entity.*;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -24,6 +29,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
@@ -38,14 +44,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Mixin(StriderEntity.class)
-public abstract class StriderEntityMixin extends AnimalEntity implements Shearable, StriderHairInterface {
+public abstract class StriderEntityMixin extends AnimalEntity implements Shearable, StriderHairInterface, StriderInteractInterface {
 
     @Shadow public abstract boolean isSaddled();
 
     @Shadow @Final private SaddledComponent saddledComponent;
     private static final TrackedData<Boolean> HAIR_STATE;
     private static final TrackedData<Integer> HAIR_GROWTH;
-    private static final TrackedData<Boolean> COLD;
+    //private static final TrackedData<Boolean> COLD;
     private static final TrackedData<Integer> HAIR_STYLE;
 
     public StriderEntityMixin(EntityType<? extends AnimalEntity> entityType, World world, SaddledComponent saddledComponent) {
@@ -136,30 +142,95 @@ public abstract class StriderEntityMixin extends AnimalEntity implements Shearab
         }
     }
 
-    public void useShears(PlayerEntity player, ItemStack itemStack, Hand hand) {
-        this.emitGameEvent(GameEvent.SHEAR, player);
-        itemStack.damage(1, player, (playerx) -> {
-            playerx.sendToolBreakStatus(hand);
-        });
+    public void swingHandAndIncrementStat(PlayerEntity player, ItemStack itemStack, Hand hand) {
         player.swingHand(hand, true);
-
         ItemStack heldItem = player.getStackInHand(hand);
         Item item = heldItem.getItem();
         player.incrementStat(Stats.USED.getOrCreateStat(item));
     }
 
+    ////TODO: Make this return an ActionResult
+    public void useShears(PlayerEntity player, ItemStack itemStack, Hand hand) {
+        this.emitGameEvent(GameEvent.SHEAR, player);
+        itemStack.damage(1, player, (playerx) -> {
+            playerx.sendToolBreakStatus(hand);
+        });
+        swingHandAndIncrementStat(player,itemStack,hand);
+    }
 
+
+
+    //Fires when Strider is interacted with shears
+    public ActionResult shearStrider(PlayerEntity player, ItemStack itemStack, Hand hand, SoundCategory soundCategory) {
+        if (this.isShearable()) {
+            this.sheared(soundCategory);
+            useShears(player,itemStack,hand);
+            if(player instanceof ServerPlayerEntity) {
+                GunpowderRevision.SHEAR_STRIDER.trigger((ServerPlayerEntity) player);
+            }
+            return ActionResult.SUCCESS;
+        } else if (!this.isShearable() && this.isSaddled() && player.isSneaking()) {
+            this.removeSaddle(soundCategory);
+            useShears(player,itemStack,hand);
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.PASS;
+        }
+    }
+
+    //Fires when Strider is interacted with magma cream
+    public ActionResult creamStrider(PlayerEntity player, ItemStack itemStack, Hand hand, SoundCategory soundCategory) {
+        if(this.hasHair() && (!this.isSaddled() || (this.isSaddled() && player.isSneaking()))) {
+            this.styleStrider(SoundCategory.PLAYERS);
+            this.emitGameEvent(GameEvent.MOB_INTERACT, player);
+            if (!player.isCreative()) {
+                itemStack.decrement(1);
+            }
+            if (player instanceof ServerPlayerEntity) {
+                GunpowderRevision.STYLE_STRIDER.trigger((ServerPlayerEntity) player);
+            }
+            swingHandAndIncrementStat(player,itemStack,hand);
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.PASS;
+        }
+    }
+
+    //Fires when Strider is interacted with Warped Roots
+    public ActionResult feedStrider(PlayerEntity player, ItemStack itemStack, Hand hand, SoundCategory soundCategory) {
+        if(!this.hasHair() && (!this.isSaddled() || (this.isSaddled() && player.isSneaking()))) {
+            this.fedRoots(SoundCategory.PLAYERS);
+            this.emitGameEvent(GameEvent.MOB_INTERACT, player);
+            if (!player.isCreative()) {
+                itemStack.decrement(1);
+            }
+            swingHandAndIncrementStat(player,itemStack,hand);
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.PASS;
+        }
+    }
+
+    /*
+    //TODO: Clean up this mess.
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
     public void interactWithStrider(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) throws CommandSyntaxException {
+
         ItemStack itemStack = player.getStackInHand(hand);
+        Item item = itemStack.getItem();
 
         if (itemStack.isOf(Items.SHEARS)) {
             if (!this.world.isClient && this.isShearable() && !this.isBaby()) {
                 this.sheared(SoundCategory.PLAYERS);
                 useShears(player,itemStack,hand);
+                if (player instanceof ServerPlayerEntity) {
+                    GunpowderRevision.SHEAR_STRIDER.trigger((ServerPlayerEntity)player);
+                }
+                return;
             } else if(!this.world.isClient && this.isSaddled() && !this.isBaby() && player.isSneaking()) {
                 this.removeSaddle(SoundCategory.PLAYERS);
                 useShears(player,itemStack,hand);
+                return;
             }
         } else if((itemStack.isOf(Items.WARPED_ROOTS))) {
             if (!this.world.isClient && !this.hasHair() && (!this.isSaddled() || player.isSneaking())) {
@@ -169,6 +240,8 @@ public abstract class StriderEntityMixin extends AnimalEntity implements Shearab
                     itemStack.decrement(1);
                 }
                 player.swingHand(hand, true);
+                player.incrementStat(Stats.USED.getOrCreateStat(item));
+                return;
             }
         } else if((itemStack.isOf(Items.MAGMA_CREAM))) {
             if (!this.world.isClient && this.hasHair() && (!this.isSaddled() || player.isSneaking())) {
@@ -178,18 +251,26 @@ public abstract class StriderEntityMixin extends AnimalEntity implements Shearab
                     itemStack.decrement(1);
                 }
                 player.swingHand(hand, true);
+                if (player instanceof ServerPlayerEntity) {
+                    GunpowderRevision.STYLE_STRIDER.trigger((ServerPlayerEntity)player);
+                }
+                player.incrementStat(Stats.USED.getOrCreateStat(item));
+                return;
             }
         }
     }
+     */
 
     @Override
     public boolean isShearable()  {
         return this.isAlive() && this.hasHair() &&!this.isSaddled();
     }
 
-    @Inject(method = "tick", at = @At("HEAD"),cancellable = true)
+    @Shadow public abstract boolean isCold();
+
+    @Inject(method = "tick", at = @At("TAIL"),cancellable = true)
     public void growHair(CallbackInfo ci) {
-        if(!this.hasHair() && !this.dataTracker.get(COLD)) {
+        if(!this.hasHair() && !this.isCold()) {
             this.setHairGrowth(getHairGrowth()+1);
             if(getHairGrowth() >= 12000) {
                 this.setHairGrowth(0);
@@ -198,11 +279,10 @@ public abstract class StriderEntityMixin extends AnimalEntity implements Shearab
         }
     }
 
-
     static {
         HAIR_STATE = DataTracker.registerData(StriderEntityMixin.class, TrackedDataHandlerRegistry.BOOLEAN);
         HAIR_GROWTH = DataTracker.registerData(StriderEntityMixin.class, TrackedDataHandlerRegistry.INTEGER);
-        COLD = DataTracker.registerData(StriderEntityMixin.class, TrackedDataHandlerRegistry.BOOLEAN);
+        //COLD = DataTracker.registerData(StriderEntityMixin.class, TrackedDataHandlerRegistry.BOOLEAN);
         HAIR_STYLE = DataTracker.registerData(StriderEntityMixin.class, TrackedDataHandlerRegistry.INTEGER);
     }
 }

@@ -16,6 +16,7 @@ public interface CriterionRegistryAccessor {
 
     @Invoker("register")
     static <T extends Criterion<?>> T registerCriterion(T criterion) {
+        System.out.println("Registered criterion!");
         return null;
     }
 }
