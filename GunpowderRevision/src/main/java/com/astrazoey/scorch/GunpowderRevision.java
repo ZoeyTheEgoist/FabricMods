@@ -122,5 +122,13 @@ public class GunpowderRevision implements ModInitializer {
                         }
                 );
 
+        BiomeModifications.create(new Identifier(MOD_ID, "wither_sanctum"))
+                .add(ModificationPhase.ADDITIONS,
+                        BiomeSelectors.foundInTheNether(),
+                        context -> {
+                            context.getGenerationSettings().addBuiltInStructure(GunpowderRevisionConfiguredStructures.CONFIGURED_WITHER_SANCTUM);
+                        }
+                );
+
     }
 }
