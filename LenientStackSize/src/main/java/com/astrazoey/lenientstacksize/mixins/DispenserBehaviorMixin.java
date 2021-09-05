@@ -25,6 +25,7 @@ public class DispenserBehaviorMixin implements DispenserBehaviorInterface {
     private ItemDispenserBehavior fallbackBehavior = new ItemDispenserBehavior();
 
 
+    @Override
     public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
 
         ItemStack emptyBucketStack = new ItemStack(Items.BUCKET);
