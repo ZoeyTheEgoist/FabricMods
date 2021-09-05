@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.astrazoey.lenientstacksize.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ItemMixin",
+    "MushroomStewItemMixin",
+    "SuspiciousStewItemMixin",
+    "JukeboxBlockMixin",
+    "AnvilScreenHandlerMixin",
+    "MilkBucketItemMixin",
+    "BucketItemMixin",
+    "FilledBucketCriterionMixin",
+    "PowderSnowBucketItemMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "HorseScreenHandlerMixin",
+    "DispenserBehaviorMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

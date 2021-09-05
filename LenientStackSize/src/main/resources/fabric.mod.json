@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "lenientstacksize",
+  "version": "${version}",
+
+  "name": "Lenient Stack Size",
+  "description": "Increases the stack size of some vanilla items.",
+  "authors": [
+    "Astrazoey"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/ZoeyTheEgoist/FabricMods"
+  },
+
+  "license": "MIT",
+  "icon": "assets/lenientstacksize/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.astrazoey.lenientstacksize.LenientStackSize"
+    ]
+  },
+  "mixins": [
+    "lenientstacksize.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
