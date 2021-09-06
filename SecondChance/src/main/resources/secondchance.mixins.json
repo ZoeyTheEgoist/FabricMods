@@ -4,9 +4,10 @@
   "package": "com.astrazoey.secondchance.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "LivingEntityMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
-    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
