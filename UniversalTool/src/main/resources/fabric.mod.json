@@ -13,8 +13,9 @@
     "Cameron"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/ZoeyTheEgoist/FabricMods/tree/main/UniversalTool",
+    "sources": "https://github.com/ZoeyTheEgoist/FabricMods/tree/main/UniversalTool",
+    "issues": "https://github.com/ZoeyTheEgoist/FabricMods"
   },
 
   "license": "MIT",
@@ -35,8 +36,5 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
