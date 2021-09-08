@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity {
     float damageAmount;
     boolean validBraceSource;
     float damageRemainder = 0.0f;
-    float damageThreshold = 0.0f;
+    float damageThreshold = 1000.0f;
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);

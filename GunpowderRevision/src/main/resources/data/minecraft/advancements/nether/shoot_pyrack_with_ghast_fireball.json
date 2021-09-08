@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:nether/shoot_pyrack_with_flaming_projectile",
+  "display": {
+    "icon": {
+      "item": "scorch:pyrack"
+    },
+    "title": {
+      "translate": "advancements.nether.shoot_pyrack_with_ghast_fireball.title"
+    },
+    "description": {
+      "translate": "advancements.nether.shoot_pyrack_with_ghast_fireball.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "shoot_pyrack_with_ghast_fireball": {
+      "trigger": "minecraft:ghast_pyrack"
+    }
+  },
+  "requirements": [
+    [
+      "shoot_pyrack_with_ghast_fireball"
+    ]
+  ]
+}

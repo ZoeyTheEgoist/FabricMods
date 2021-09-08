@@ -9,13 +9,13 @@
     "FireBlockMixin",
     "NoiseChunkGeneratorMixin",
     "StructuresConfigAccessor",
-    "BackgroundRendererMixin",
     "StriderEntityMixin",
     "StriderEntityRendererMixin",
     "CriterionRegistryAccessor",
     "PiglinBrainMixin"
   ],
   "client": [
+    "BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

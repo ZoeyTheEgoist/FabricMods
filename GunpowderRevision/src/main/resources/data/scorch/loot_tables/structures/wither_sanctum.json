@@ -1,0 +1,117 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 5,
+        "max": 10
+      },
+      "entries": [
+        {
+          "type": "item",
+          "weight": 20,
+          "name": "minecraft:bone",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 5,
+          "name": "minecraft:stone_sword",
+          "functions": [
+            {
+              "function": "enchant_randomly",
+              "enchantments": [
+                "sharpness",
+                "smite",
+                "vanishing_curse",
+                "mending",
+                "unbreaking",
+                "looting",
+                "fire_aspect",
+                "knockback",
+                "bane_of_arthropods"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 10,
+          "name": "minecraft:iron_nugget",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 8,
+                "max": 32
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 10,
+          "name": "minecraft:soul_lantern",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 4,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 2,
+          "name": "minecraft:wither_rose",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:netherite_scrap",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 10,
+          "name": "minecraft:flint",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 5,
+                "max": 11
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -42,7 +42,7 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
     }
 
     private static final Pool<SpawnSettings.SpawnEntry> STRUCTURE_MONSTERS = Pool.of(
-            new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 25, 3, 6)
+            new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 100, 3, 7)
     );
     @Override
     public Pool<SpawnSettings.SpawnEntry> getMonsterSpawns() {
@@ -53,9 +53,10 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long seed, ChunkRandom chunkRandom, ChunkPos chunkPos, Biome biome, ChunkPos chunkPos2, DefaultFeatureConfig featureConfig, HeightLimitView heightLimitView) {
 
+        int structureSize = 12;
         int lowestY = 40;
         int highestY = 110;
-        int minimumSolidBlocksBeneath = 25;
+        int minimumSolidBlocksBeneath = 50;
         BlockPos centerOfChunk = new BlockPos(chunkPos.x * 16, lowestY+1, chunkPos.z * 16);
         boolean blockIsAir;
         int solidBlocksBeneath = 0;
@@ -67,9 +68,9 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
             centerOfChunk = centerOfChunk.add(0,1,0);
 
             //make sure all the blocks on this Y level in a 10x10 area is air.
-            for (int x = 1; x <= 10; x++) {
+            for (int x = 1; x <= structureSize; x++) {
                 centerOfChunk = centerOfChunk.add(1,0,0);
-                for (int z = 1; z <= 10; z++) {
+                for (int z = 1; z <= structureSize; z++) {
                     centerOfChunk = centerOfChunk.add(0,0,1);
                     VerticalBlockSample verticalBlockSample = chunkGenerator.getColumnSample(centerOfChunk.getX(), centerOfChunk.getZ(), heightLimitView);
                     BlockState blockState = verticalBlockSample.getState(centerOfChunk);
@@ -90,9 +91,9 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
                 //Counts the number of solid blocks under the Y level to make sure there's enough ground here
                 //to place the structure on
                 BlockPos centerOfChunk2 = new BlockPos(chunkPos.x * 16, y-1, chunkPos.z * 16);
-                for (int x = 1; x <= 10; x++) {
+                for (int x = 1; x <= structureSize; x++) {
                     centerOfChunk2 = centerOfChunk2.add(1,0,0);
-                    for (int z = 1; z <= 10; z++) {
+                    for (int z = 1; z <= structureSize; z++) {
                         centerOfChunk2 = centerOfChunk2.add(0,0,1);
                         VerticalBlockSample verticalBlockSample = chunkGenerator.getColumnSample(centerOfChunk2.getX(), centerOfChunk2.getZ(), heightLimitView);
                         BlockState blockState = verticalBlockSample.getState(centerOfChunk2);
@@ -120,6 +121,30 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
         }
         return false;
     }
+
+    /*
+    public static BlockPos getHighestLand(ChunkGenerator chunkGenerator, MutableBoundingBox boundingBox, boolean canBeOnLiquid) {
+        BlockPos.Mutable mutable = new BlockPos.Mutable().set(
+                boundingBox.getCenter().getX(),
+                chunkGenerator.getGenDepth() - 20,
+                boundingBox.getCenter().getZ());
+
+        IBlockReader blockView = chunkGenerator.getBaseColumn(mutable.getX(), mutable.getZ());
+        BlockState currentBlockstate;
+        while (mutable.getY() > chunkGenerator.getSeaLevel()) {
+            currentBlockstate = blockView.getBlockState(mutable);
+            if (!currentBlockstate.canOcclude()) {
+                mutable.move(Direction.DOWN);
+                continue;
+            }
+            else if (blockView.getBlockState(mutable.offset(0, 3, 0)).getMaterial() == Material.AIR && (canBeOnLiquid ? !currentBlockstate.isAir() : currentBlockstate.canOcclude())) {
+                return mutable;
+            }
+            mutable.move(Direction.DOWN);
+        }
+
+        return mutable;
+    }*/
 
     public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
         public Start(StructureFeature<DefaultFeatureConfig> structureIn, ChunkPos chunkPos, int referenceInt, long seedIn) {

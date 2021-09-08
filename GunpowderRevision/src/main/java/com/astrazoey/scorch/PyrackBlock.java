@@ -5,8 +5,11 @@ import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,7 +65,12 @@ public class PyrackBlock extends OreBlock {
                 prime(world, blockPos);
 
                 if (entity instanceof ServerPlayerEntity) {
-                    GunpowderRevision.SHOOT_PYRACK.trigger((ServerPlayerEntity)entity);
+                    if(projectile instanceof ArrowEntity) {
+                        GunpowderRevision.SHOOT_PYRACK.trigger((ServerPlayerEntity) entity);
+                    }
+                    if(projectile instanceof FireballEntity) {
+                        GunpowderRevision.GHAST_PYRACK.trigger((ServerPlayerEntity) entity);
+                    }
                 }
 
             }
