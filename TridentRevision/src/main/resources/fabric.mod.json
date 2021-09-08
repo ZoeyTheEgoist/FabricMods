@@ -10,7 +10,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/trident-revision",
-    "sources": ""
+    "sources": "https://github.com/ZoeyTheEgoist/FabricMods/tree/main/TridentRevision",
+    "issues": "https://github.com/ZoeyTheEgoist/FabricMods"
   },
 
   "license": "MIT",
@@ -30,8 +31,5 @@
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
