@@ -10,6 +10,8 @@
   "advancements.nether.style_strider.description": "Usa la crema di magma per cambiare il look a uno strider.",
   "advancements.nether.shoot_pyrack_with_flaming_projectile.title": "Pirotecnica avanzata",
   "advancements.nether.shoot_pyrack_with_flaming_projectile.description": "Usa un proiettile infuocato per detonare la roccia esplosiva.",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.title": "Genio della pirotecnica",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.description": "Devia una palla di fuoco di un ghast in una roccia esplosiva.",
   "advancements.nether.obtain_ignistone.title": "Sicurezza lavica",
   "advancements.nether.obtain_ignistone.description": "Raccogli la pietra di fuoco con tocco di velluto per evitare che fonda."
 }
