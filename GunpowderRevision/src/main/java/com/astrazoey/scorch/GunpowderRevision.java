@@ -84,7 +84,7 @@ public class GunpowderRevision implements ModInitializer {
     public void onInitialize() {
 
 
-
+        //TODO - Make this work properly so the PiglinBrainMixin can be removed
         /*
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
             if (PIGLIN_LOOT_TABLE_ID.equals(id)) {
@@ -146,6 +146,7 @@ public class GunpowderRevision implements ModInitializer {
                         }
                 );
 
+        //TODO - Get this structure to spawn nicely.
         /*
         BiomeModifications.create(new Identifier(MOD_ID, "wither_sanctum"))
                 .add(ModificationPhase.ADDITIONS,
