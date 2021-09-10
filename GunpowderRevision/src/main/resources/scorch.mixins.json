@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.astrazoey.scorch.mixins",
+  "plugin": "com.astrazoey.scorch.mixins.ObfuscateMixinPlugin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "NetherrackBlockMixin",
