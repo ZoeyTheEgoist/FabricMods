@@ -1,7 +1,6 @@
 package com.astrazoey.scorch;
 import com.astrazoey.scorch.criterion.*;
 import com.astrazoey.scorch.mixins.CriterionRegistryAccessor;
-import com.astrazoey.scorch.mixins.StriderEntityMixin;
 import com.astrazoey.scorch.registry.GunpowderRevisionBlocks;
 import com.astrazoey.scorch.registry.GunpowderRevisionEvents;
 import com.astrazoey.scorch.registry.GunpowderRevisionItems;
@@ -10,25 +9,10 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
-import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootChoice;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
-import net.minecraft.loot.entry.LootPoolEntryType;
-import net.minecraft.loot.entry.LootTableEntry;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -41,7 +25,6 @@ import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 
-import java.util.function.Consumer;
 
 public class GunpowderRevision implements ModInitializer {
 
@@ -69,7 +52,7 @@ public class GunpowderRevision implements ModInitializer {
     public static GhastPyrackCriterion GHAST_PYRACK = new GhastPyrackCriterion();
     public static MineIgnistoneCriterion MINE_IGNISTONE = new MineIgnistoneCriterion();
 
-    private static final Identifier PIGLIN_LOOT_TABLE_ID = LootTables.PIGLIN_BARTERING_GAMEPLAY;
+    //private static final Identifier PIGLIN_LOOT_TABLE_ID = LootTables.PIGLIN_BARTERING_GAMEPLAY;
 
 
     private void successfullyUsedItem(PlayerEntity player, ItemStack heldItem, Item item) {
