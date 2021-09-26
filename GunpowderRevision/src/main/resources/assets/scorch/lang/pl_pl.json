@@ -1,0 +1,17 @@
+{
+  "block.scorch.pyrack" : "Pirack",
+  "block.scorch.ignistone" : "Ognit",
+  "subtitles.scorch.apply_magma_to_strider": "Żelowanie włosów magmołaza",
+  "subtitles.scorch.ignistone_drops_lava": "Ognit exploduje",
+  "subtitles.scorch.pyrack_ignites": "Pirak się spala",
+  "advancements.nether.shear_strider.title": "Gładki jak niemowlak!",
+  "advancements.nether.shear_strider.description": "Użyj nożyc na magmołazie by dać mu nową fryzurę.",
+  "advancements.nether.style_strider.title": "Mały, ale ładny!",
+  "advancements.nether.style_strider.description": "Użyj magmowego kremu na magmołazie by wyżelować mu włosy.",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.title": "Zaawansowana pirotechnika",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.description": "Użyj podpalonej strzały aby zdetonować pirak.",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.title": "Mistrzowska pirotechnika",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.description": "Odbij kulę ghasta prosto w pirak",
+  "advancements.nether.obtain_ignistone.title": "Ostrożnie! Gorące!",
+  "advancements.nether.obtain_ignistone.description": "Wydobądź ognit używając jedwabnego dotyku by zapobiec jego explozji w lawę."
+}
