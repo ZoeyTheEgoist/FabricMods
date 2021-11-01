@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Lenient Stack Size",
-  "description": "Increases the stack size of some vanilla items.",
+  "description": "Increases the stack size of some vanilla items - check the config for more!",
   "authors": [
     "Astrazoey"
   ],
