@@ -2,6 +2,7 @@ package com.astrazoey.scorch;
 
 import com.astrazoey.scorch.registry.GunpowderRevisionSounds;
 import net.minecraft.block.*;
+import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -115,11 +116,15 @@ public class PyrackBlock extends OreBlock {
 
     public static void detonate(World world, BlockPos blockPos) {
 
+        //get center of block
+        Vector3d centeredBlockPos = new Vector3d(blockPos.getX()+0.5, blockPos.getY()+0.5, blockPos.getZ()+0.5);
+
+
         if (world instanceof ServerWorld serverWorld) {
-            serverWorld.spawnParticles(ParticleTypes.FLAME, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 5,  0.1d, 0.1d, 0.1d, 0.2d);
-            serverWorld.spawnParticles(ParticleTypes.LAVA, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 3,  0.1d, 0.1d, 0.1d, 0.2d);
+            serverWorld.spawnParticles(ParticleTypes.FLAME, centeredBlockPos.x, centeredBlockPos.y, centeredBlockPos.z, 5,  0.1d, 0.1d, 0.1d, 0.2d);
+            serverWorld.spawnParticles(ParticleTypes.LAVA, centeredBlockPos.x, centeredBlockPos.y, centeredBlockPos.z, 3,  0.1d, 0.1d, 0.1d, 0.2d);
         }
-        world.createExplosion(null, DamageSource.GENERIC, null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1.85f, true, Explosion.DestructionType.DESTROY);
+        world.createExplosion(null, DamageSource.GENERIC, null, centeredBlockPos.x, centeredBlockPos.y, centeredBlockPos.z, 1.85f, true, Explosion.DestructionType.DESTROY);
     }
 
 
