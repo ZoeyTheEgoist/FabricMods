@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:nether/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:basalt"
+    },
+    "title": {
+      "translate": "advancements.nether.find_sanctum.title"
+    },
+    "description": {
+      "translate": "advancements.nether.find_sanctum.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sanctum": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "scorch:wither_sanctum"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sanctum"
+    ]
+  ]
+}

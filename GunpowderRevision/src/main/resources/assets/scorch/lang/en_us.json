@@ -13,5 +13,9 @@
   "advancements.nether.shoot_pyrack_with_ghast_fireball.title": "Expert Pyrotechnics",
   "advancements.nether.shoot_pyrack_with_ghast_fireball.description": "Deflect a ghast fireball into Pyrack.",
   "advancements.nether.obtain_ignistone.title": "Lava Safety",
-  "advancements.nether.obtain_ignistone.description": "Mine and collect ignistone with silk touch to prevent it from bursting."
+  "advancements.nether.obtain_ignistone.description": "Mine and collect ignistone with silk touch to prevent it from bursting.",
+  "advancements.nether.wither_skeleton_killed_by_fireball.title": "Aim for the head!",
+  "advancements.nether.wither_skeleton_killed_by_fireball.description": "Kill a wither skeleton using a ghast's fireball.",
+  "advancements.nether.find_sanctum.title": "Isolation",
+  "advancements.nether.find_sanctum.description": "Find a Wither Sanctum."
 }

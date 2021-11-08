@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:nether/find_fortress",
+  "display": {
+    "icon": {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    "title": {
+      "translate": "advancements.nether.wither_skeleton_killed_by_fireball.title"
+    },
+    "description": {
+      "translate": "advancements.nether.wither_skeleton_killed_by_fireball.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "wither_skeleton_killed_by_fireball": {
+      "trigger": "minecraft:wither_skeleton_killed_by_fireball"
+    }
+  },
+  "requirements": [
+    [
+      "wither_skeleton_killed_by_fireball"
+    ]
+  ]
+}

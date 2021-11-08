@@ -13,7 +13,12 @@
     "StriderEntityMixin",
     "StriderEntityRendererMixin",
     "CriterionRegistryAccessor",
-    "PiglinBrainMixin"
+    "PiglinBrainMixin",
+    "WitherSkeletonEntityMixin",
+    "ItemMixin",
+    "GhastEntityMixin",
+    "SpectralArrowEntityMixin",
+    "BeaconBlockEntityMixin"
   ],
   "client": [
     "BackgroundRendererMixin"

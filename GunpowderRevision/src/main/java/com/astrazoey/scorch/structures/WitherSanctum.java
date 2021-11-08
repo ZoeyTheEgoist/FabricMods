@@ -55,46 +55,111 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
 
         int structureSize = 12;
         int lowestY = 40;
-        int highestY = 110;
-        int minimumSolidBlocksBeneath = 50;
+        int highestY = 100;
+        int minimumSolidBlocksBeneath = 25;
         BlockPos centerOfChunk = new BlockPos(chunkPos.x * 16, lowestY+1, chunkPos.z * 16);
+
+        return isValidLocation(structureSize, lowestY, highestY, minimumSolidBlocksBeneath, centerOfChunk, chunkPos, chunkGenerator, heightLimitView);
+
+    }
+
+
+    public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
+        public Start(StructureFeature<DefaultFeatureConfig> structureIn, ChunkPos chunkPos, int referenceInt, long seedIn) {
+            super(structureIn, chunkPos, referenceInt, seedIn);
+        }
+
+        @Override
+        public void init(DynamicRegistryManager dynamicRegistryManager, ChunkGenerator chunkGenerator, StructureManager structureManager, ChunkPos chunkPos, Biome biome, DefaultFeatureConfig defaultFeatureConfig,
+                         HeightLimitView heightLimitView) {
+
+            int x = chunkPos.x * 16;
+            int z = chunkPos.z * 16;
+            BlockPos.Mutable centerPos = new BlockPos.Mutable(x, validY+1, z);
+
+            VerticalBlockSample blockView = chunkGenerator.getColumnSample(centerPos.getX(), centerPos.getZ(), heightLimitView);
+
+
+            StructurePoolFeatureConfig structureSettingsAndStartPool =
+                    new StructurePoolFeatureConfig(() -> dynamicRegistryManager.get(Registry.STRUCTURE_POOL_KEY)
+                    .get(new Identifier(GunpowderRevision.MOD_ID, "wither_sanctum/start_pool")),
+                    5);
+
+            BlockPos centerOfChunk = new BlockPos(chunkPos.x * 16, 40+1, chunkPos.z * 16);
+            if(WitherSanctum.isValidLocation(12, 40, 100, 25, centerOfChunk, chunkPos, chunkGenerator, heightLimitView)) {
+                StructurePoolBasedGenerator.generate(
+                        dynamicRegistryManager,
+                        structureSettingsAndStartPool,
+                        PoolStructurePiece::new,
+                        chunkGenerator,
+                        structureManager,
+                        centerPos,
+                        this,
+                        this.random,
+                        false, // boundary adjust for villages. keep false.
+                        false, //place at heightmap. keep false if in nether to prevent bedrock roof structures
+                        heightLimitView);
+            }
+
+
+            this.setBoundingBoxFromChildren();
+
+        }
+    }
+
+    public static boolean hasSpace(ChunkGenerator chunkGenerator, BlockPos centerOfChunk, int structureSize, HeightLimitView heightLimitView) {
+        boolean blockIsAir = true;
+
+        //Make sure most blocks within the structure size is air.
+        //we're skipping 3 blocks at a time so less overall blocks need checking
+        for (int x = 1; x <= structureSize; x = x+3) {
+            centerOfChunk = centerOfChunk.add(3,0,0);
+            for (int z = 1; z <= structureSize; z = z+3) {
+                centerOfChunk = centerOfChunk.add(0,0,3);
+                VerticalBlockSample verticalBlockSample = chunkGenerator.getColumnSample(centerOfChunk.getX(), centerOfChunk.getZ(), heightLimitView);
+                BlockState blockState = verticalBlockSample.getState(centerOfChunk);
+                if(!blockState.isAir()) {
+                    blockIsAir = false;
+                    break;
+                }
+            }
+            if(!blockIsAir) {
+                break;
+            }
+        }
+
+        return blockIsAir;
+    }
+
+    public static boolean isValidLocation(int structureSize, int lowestY, int highestY, int minimumSolidBlocksBeneath, BlockPos centerOfChunk, ChunkPos chunkPos, ChunkGenerator chunkGenerator, HeightLimitView heightLimitView) {
         boolean blockIsAir;
         int solidBlocksBeneath = 0;
-
 
         //Check for valid Y level
         for(int y = lowestY; y <= highestY; y++) {
             blockIsAir = true;
             centerOfChunk = centerOfChunk.add(0,1,0);
 
-            //make sure all the blocks on this Y level in a 10x10 area is air.
-            for (int x = 1; x <= structureSize; x++) {
-                centerOfChunk = centerOfChunk.add(1,0,0);
-                for (int z = 1; z <= structureSize; z++) {
-                    centerOfChunk = centerOfChunk.add(0,0,1);
-                    VerticalBlockSample verticalBlockSample = chunkGenerator.getColumnSample(centerOfChunk.getX(), centerOfChunk.getZ(), heightLimitView);
-                    BlockState blockState = verticalBlockSample.getState(centerOfChunk);
-                    if(!blockState.isAir()) {
-                        blockIsAir = false;
-                        break;
-                    }
-                }
-                if(!blockIsAir) {
-                    break;
-                }
+            //check if there's air space at the bottom of structure
+            blockIsAir = hasSpace(chunkGenerator, centerOfChunk, structureSize, heightLimitView);
+            //check if there's air space midway up the structure
+            if(blockIsAir) {
+                centerOfChunk = centerOfChunk.add(0, 8 ,0);
+                blockIsAir = hasSpace(chunkGenerator, centerOfChunk, structureSize, heightLimitView);
+                centerOfChunk = centerOfChunk.add(0, -8, 0);
             }
-
 
             //if the Y level is pure air, move on to the next check
             if(blockIsAir) {
 
                 //Counts the number of solid blocks under the Y level to make sure there's enough ground here
                 //to place the structure on
+                //skipping two blocks at a time to save on computations
                 BlockPos centerOfChunk2 = new BlockPos(chunkPos.x * 16, y-1, chunkPos.z * 16);
-                for (int x = 1; x <= structureSize; x++) {
-                    centerOfChunk2 = centerOfChunk2.add(1,0,0);
-                    for (int z = 1; z <= structureSize; z++) {
-                        centerOfChunk2 = centerOfChunk2.add(0,0,1);
+                for (int x = 1; x <= structureSize; x = x+2) {
+                    centerOfChunk2 = centerOfChunk2.add(2,0,0);
+                    for (int z = 1; z <= structureSize; z = z+2) {
+                        centerOfChunk2 = centerOfChunk2.add(0,0,2);
                         VerticalBlockSample verticalBlockSample = chunkGenerator.getColumnSample(centerOfChunk2.getX(), centerOfChunk2.getZ(), heightLimitView);
                         BlockState blockState = verticalBlockSample.getState(centerOfChunk2);
                         if(!blockState.isAir()) {
@@ -121,69 +186,4 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
         }
         return false;
     }
-
-    /*
-    public static BlockPos getHighestLand(ChunkGenerator chunkGenerator, MutableBoundingBox boundingBox, boolean canBeOnLiquid) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable().set(
-                boundingBox.getCenter().getX(),
-                chunkGenerator.getGenDepth() - 20,
-                boundingBox.getCenter().getZ());
-
-        IBlockReader blockView = chunkGenerator.getBaseColumn(mutable.getX(), mutable.getZ());
-        BlockState currentBlockstate;
-        while (mutable.getY() > chunkGenerator.getSeaLevel()) {
-            currentBlockstate = blockView.getBlockState(mutable);
-            if (!currentBlockstate.canOcclude()) {
-                mutable.move(Direction.DOWN);
-                continue;
-            }
-            else if (blockView.getBlockState(mutable.offset(0, 3, 0)).getMaterial() == Material.AIR && (canBeOnLiquid ? !currentBlockstate.isAir() : currentBlockstate.canOcclude())) {
-                return mutable;
-            }
-            mutable.move(Direction.DOWN);
-        }
-
-        return mutable;
-    }*/
-
-    public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
-        public Start(StructureFeature<DefaultFeatureConfig> structureIn, ChunkPos chunkPos, int referenceInt, long seedIn) {
-            super(structureIn, chunkPos, referenceInt, seedIn);
-        }
-
-        @Override
-        public void init(DynamicRegistryManager dynamicRegistryManager, ChunkGenerator chunkGenerator, StructureManager structureManager, ChunkPos chunkPos, Biome biome, DefaultFeatureConfig defaultFeatureConfig,
-                         HeightLimitView heightLimitView) {
-
-            int x = chunkPos.x * 16;
-            int z = chunkPos.z * 16;
-            BlockPos.Mutable centerPos = new BlockPos.Mutable(x, validY+1, z);
-
-            VerticalBlockSample blockView = chunkGenerator.getColumnSample(centerPos.getX(), centerPos.getZ(), heightLimitView);
-
-
-            StructurePoolFeatureConfig structureSettingsAndStartPool =
-                    new StructurePoolFeatureConfig(() -> dynamicRegistryManager.get(Registry.STRUCTURE_POOL_KEY)
-                    .get(new Identifier(GunpowderRevision.MOD_ID, "wither_sanctum/start_pool")),
-                    5);
-
-            StructurePoolBasedGenerator.generate(
-                    dynamicRegistryManager,
-                    structureSettingsAndStartPool,
-                    PoolStructurePiece::new,
-                    chunkGenerator,
-                    structureManager,
-                    centerPos,
-                    this,
-                    this.random,
-                    false, // boundary adjust for villages. keep false.
-                    false, //place at heightmap. keep false if in nether to prevent bedrock roof structures
-                    heightLimitView);
-
-            this.setBoundingBoxFromChildren();
-
-        }
-
-    }
-
 }

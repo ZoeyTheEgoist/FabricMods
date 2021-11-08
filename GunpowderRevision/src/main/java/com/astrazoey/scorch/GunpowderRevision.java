@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -36,7 +37,7 @@ public class GunpowderRevision implements ModInitializer {
                     YOffset.fixed(7),
                     YOffset.fixed(15)))))
             .spreadHorizontally()
-            .repeat(2);
+            .repeat(Config.lowPyrackSpawnRate);
 
     public static final ConfiguredFeature<?,?> PYRACK_CONFIGURED_HIGH = Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_NETHER, GunpowderRevisionBlocks.PYRACK.getDefaultState(),
             15))
@@ -44,13 +45,14 @@ public class GunpowderRevision implements ModInitializer {
                     YOffset.fixed(40),
                     YOffset.fixed(120)))))
             .spreadHorizontally()
-            .repeat(8);
+            .repeat(Config.highPyrackSpawnRate);
 
     public static ShearStriderCriterion SHEAR_STRIDER = new ShearStriderCriterion();
     public static StyleStriderCriterion STYLE_STRIDER = new StyleStriderCriterion();
     public static ShootPyrackCriterion SHOOT_PYRACK = new ShootPyrackCriterion();
     public static GhastPyrackCriterion GHAST_PYRACK = new GhastPyrackCriterion();
     public static MineIgnistoneCriterion MINE_IGNISTONE = new MineIgnistoneCriterion();
+    public static WitherSkeletonKilledByFireballCriterion WITHER_SKELETON_KILLED_BY_FIREBALL = new WitherSkeletonKilledByFireballCriterion();
 
     //private static final Identifier PIGLIN_LOOT_TABLE_ID = LootTables.PIGLIN_BARTERING_GAMEPLAY;
 
@@ -66,6 +68,7 @@ public class GunpowderRevision implements ModInitializer {
     @Override
     public void onInitialize() {
 
+        Config.load();
 
         //TODO - Make this work properly so the PiglinBrainMixin can be removed
         /*
@@ -77,6 +80,9 @@ public class GunpowderRevision implements ModInitializer {
                 table.pool(poolBuilder);
             }
         });*/
+
+        //Fireproof items
+        SetItemFireproof.set(Items.WITHER_SKELETON_SKULL, true);
 
         //Registration
         GunpowderRevisionBlocks.registerBlocks();
@@ -90,8 +96,7 @@ public class GunpowderRevision implements ModInitializer {
         CriterionRegistryAccessor.registerCriterion(SHOOT_PYRACK);
         CriterionRegistryAccessor.registerCriterion(GHAST_PYRACK);
         CriterionRegistryAccessor.registerCriterion(MINE_IGNISTONE);
-
-
+        CriterionRegistryAccessor.registerCriterion(WITHER_SKELETON_KILLED_BY_FIREBALL);
 
 
         //Ore Generation
@@ -113,6 +118,7 @@ public class GunpowderRevision implements ModInitializer {
         GunpowderRevisionConfiguredStructures.registerConfiguredStructures();
 
 
+        /*
         BiomeModifications.create(new Identifier(MOD_ID, "debug_structure"))
                 .add(ModificationPhase.ADDITIONS,
                         BiomeSelectors.foundInTheNether(),
@@ -120,6 +126,8 @@ public class GunpowderRevision implements ModInitializer {
                     context.getGenerationSettings().addBuiltInStructure(GunpowderRevisionConfiguredStructures.CONFIGURED_DEBUG_STRUCTURE);
                         }
                         );
+
+         */
 
         BiomeModifications.create(new Identifier(MOD_ID, "debris_structure"))
                 .add(ModificationPhase.ADDITIONS,
@@ -129,15 +137,13 @@ public class GunpowderRevision implements ModInitializer {
                         }
                 );
 
-        //TODO - Get this structure to spawn nicely.
-        /*
         BiomeModifications.create(new Identifier(MOD_ID, "wither_sanctum"))
                 .add(ModificationPhase.ADDITIONS,
-                        BiomeSelectors.foundInTheNether(),
+                        BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES, BiomeKeys.SOUL_SAND_VALLEY, BiomeKeys.CRIMSON_FOREST),
                         context -> {
                             context.getGenerationSettings().addBuiltInStructure(GunpowderRevisionConfiguredStructures.CONFIGURED_WITHER_SANCTUM);
                         }
                 );
-        */
+
     }
 }
