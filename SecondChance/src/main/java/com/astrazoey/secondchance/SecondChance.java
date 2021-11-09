@@ -10,6 +10,6 @@ public class SecondChance implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
+		Config.load();
 	}
 }

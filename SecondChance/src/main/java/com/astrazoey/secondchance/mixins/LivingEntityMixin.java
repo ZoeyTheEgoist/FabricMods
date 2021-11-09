@@ -1,13 +1,11 @@
 package com.astrazoey.secondchance.mixins;
 
+import com.astrazoey.secondchance.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Arm;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -44,16 +42,16 @@ public abstract class LivingEntityMixin extends Entity {
         validBraceSource = !source.isFromFalling() && !source.isOutOfWorld() && !source.isFallingBlock() && !(source.getAttacker() instanceof PlayerEntity);
 
         if(entityType == EntityType.WOLF) {
-            damageThreshold = 4.0f; //half health
+            damageThreshold = Config.wolfHealthThreshold;
         } else if (entityType == EntityType.PARROT) {
-            damageThreshold = 3.0f; //half health
+            damageThreshold = Config.parrotHealthThreshold;
         } else if (entityType == EntityType.CAT) {
-            damageThreshold = 5.0f; //half health
+            damageThreshold = Config.catHealthThreshold;
         } else if ((entityType == EntityType.VILLAGER)
                 || (entityType == EntityType.WANDERING_TRADER)) {
-            damageThreshold = 13.5f; //same as player
+            damageThreshold = Config.villagerHealthThreshold;
         } else if (entityType == EntityType.AXOLOTL) {
-            damageThreshold = 4.0f; //the value axolotls will play dead
+            damageThreshold = Config.axolotlHealthThreshold;
         } else if ((entityType == EntityType.HORSE)
                 || (entityType == EntityType.DONKEY)
                 || (entityType == EntityType.SKELETON_HORSE)
@@ -61,11 +59,11 @@ public abstract class LivingEntityMixin extends Entity {
                 || (entityType == EntityType.MULE)
                 || (entityType == EntityType.LLAMA)
                 || (entityType == EntityType.TRADER_LLAMA)){
-            damageThreshold = 15.0f; //the minimum max health of a horse mount
+            damageThreshold = Config.mountHealthThreshold;
         } else if (entityType == EntityType.SNOW_GOLEM) {
-            damageThreshold = 2.0f; //half health
+            damageThreshold = Config.snowGolemHealthThreshold;
         } else if (entityType == EntityType.IRON_GOLEM) {
-            damageThreshold = 20.0f; //a fifth health
+            damageThreshold = Config.ironGolemHealthThreshold;
         }
     }
 

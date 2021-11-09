@@ -1,6 +1,7 @@
 package com.astrazoey.secondchance.mixins;
 
 
+import com.astrazoey.secondchance.Config;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -30,7 +31,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     float damageAmount;
     boolean validBraceSource;
     float damageRemainder = 1.0f;
-    float damageThreshold = 13.5f;
+    float damageThreshold = Config.playerHealthThreshold;
 
     @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
     public void getPlayerHealth(DamageSource source, float amount, CallbackInfo ci) {
