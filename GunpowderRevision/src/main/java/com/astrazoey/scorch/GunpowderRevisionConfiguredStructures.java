@@ -7,6 +7,7 @@ import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class GunpowderRevisionConfiguredStructures {
+
     public static ConfiguredStructureFeature<?,?> CONFIGURED_DEBUG_STRUCTURE =
             GunpowderRevisionStructures.DEBUG_STRUCTURE.configure(DefaultFeatureConfig.DEFAULT);
 

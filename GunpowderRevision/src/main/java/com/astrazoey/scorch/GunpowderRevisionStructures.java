@@ -43,8 +43,8 @@ public class GunpowderRevisionStructures {
         FabricStructureBuilder.create(new Identifier(GunpowderRevision.MOD_ID, "wither_sanctum"), WITHER_SANCTUM)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(new StructureConfig(
-                        6, //distance apart in chunks
-                        5, //minimum distance apart in chunks
+                        5, //distance apart in chunks
+                        4, //minimum distance apart in chunks
                         736186643 //structure seed to prevent structures spawning over each other
                 ))
                 .superflatFeature(WITHER_SANCTUM.configure(FeatureConfig.DEFAULT))
