@@ -56,7 +56,7 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
         int structureSize = 12;
         int lowestY = 40;
         int highestY = 100;
-        int minimumSolidBlocksBeneath = 25;
+        int minimumSolidBlocksBeneath = 24;
         BlockPos centerOfChunk = new BlockPos(chunkPos.x * 16, lowestY+1, chunkPos.z * 16);
 
         return isValidLocation(structureSize, lowestY, highestY, minimumSolidBlocksBeneath, centerOfChunk, chunkPos, chunkGenerator, heightLimitView);
@@ -86,7 +86,7 @@ public class WitherSanctum extends StructureFeature<DefaultFeatureConfig> {
                     5);
 
             BlockPos centerOfChunk = new BlockPos(chunkPos.x * 16, 40+1, chunkPos.z * 16);
-            if(WitherSanctum.isValidLocation(12, 40, 100, 25, centerOfChunk, chunkPos, chunkGenerator, heightLimitView)) {
+            if(WitherSanctum.isValidLocation(12, 40, 100, 24, centerOfChunk, chunkPos, chunkGenerator, heightLimitView)) {
                 StructurePoolBasedGenerator.generate(
                         dynamicRegistryManager,
                         structureSettingsAndStartPool,
