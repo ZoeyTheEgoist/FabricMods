@@ -1,0 +1,21 @@
+{
+  "block.scorch.pyrack" : "Pyrack",
+  "block.scorch.ignistone" : "Ignirrocha",
+  "subtitles.scorch.apply_magma_to_strider": "Gel aplicado ao cabelo de lavagante",
+  "subtitles.scorch.ignistone_drops_lava": "Ignirrocha estoura",
+  "subtitles.scorch.pyrack_ignites": "Pyrack acionada",
+  "advancements.nether.shear_strider.title": "Lavagante sem borda",
+  "advancements.nether.shear_strider.description": "Use uma tesoura para cortar o cabelo de um lavagante.",
+  "advancements.nether.style_strider.title": "Surfista do gel de lava",
+  "advancements.nether.style_strider.description": "Use creme de magma para estilizar o cabelo de um lavagante.",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.title": "Pirotecnia avançada",
+  "advancements.nether.shoot_pyrack_with_flaming_projectile.description": "Use uma flecha flamejante para detonar pyrack.",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.title": "Pirotecnia expert",
+  "advancements.nether.shoot_pyrack_with_ghast_fireball.description": "Rebata uma bola de fogo de um ghast em pyrack.",
+  "advancements.nether.obtain_ignistone.title": "Segurança contra conflavação",
+  "advancements.nether.obtain_ignistone.description": "Use toque suave para minerar e coletar ignirrocha sem que estoure.",
+  "advancements.nether.wither_skeleton_killed_by_fireball.title": "Direto na cabeça!",
+  "advancements.nether.wither_skeleton_killed_by_fireball.description": "Mate um esqueleto wither usando a bola de fogo de um ghast.",
+  "advancements.nether.find_sanctum.title": "Isolação",
+  "advancements.nether.find_sanctum.description": "Encontre um santuário wither."
+}
