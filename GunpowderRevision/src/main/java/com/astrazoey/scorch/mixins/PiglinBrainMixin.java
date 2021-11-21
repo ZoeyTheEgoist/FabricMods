@@ -23,15 +23,8 @@ import java.util.List;
 
 @Mixin(PiglinBrain.class)
 public class PiglinBrainMixin {
-
-
-
-
     @Inject(method = "drop", at = @At("HEAD"), cancellable = true)
     private static void addSaddleToDrop(PiglinEntity piglin, List<ItemStack> list, Vec3d vec3d, CallbackInfo ci) {
-
-        //List<ItemStack> newList;
-        //newList = Collections.singletonList(new ItemStack(Items.SADDLE));
 
         if(piglin.world.random.nextInt(6) == 0) {
             if(!list.isEmpty() && list != null) {
