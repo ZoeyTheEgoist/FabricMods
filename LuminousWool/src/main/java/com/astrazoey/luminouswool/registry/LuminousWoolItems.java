@@ -27,6 +27,23 @@ public class LuminousWoolItems {
     public static final BlockItem LUMINOUS_RED_WOOL = new BlockItem(LuminousWoolBlocks.LUMINOUS_RED_WOOL, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
     public static final BlockItem LUMINOUS_BLACK_WOOL = new BlockItem(LuminousWoolBlocks.LUMINOUS_BLACK_WOOL, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
 
+    public static final BlockItem LUMINOUS_WHITE_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_WHITE_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_ORANGE_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_ORANGE_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_MAGENTA_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_MAGENTA_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_LIGHT_BLUE_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_LIGHT_BLUE_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_YELLOW_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_YELLOW_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_LIME_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_LIME_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_PINK_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_PINK_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_GRAY_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_GRAY_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_LIGHT_GRAY_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_LIGHT_GRAY_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_CYAN_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_CYAN_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_PURPLE_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_PURPLE_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_BLUE_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_BLUE_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_BROWN_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_BROWN_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_GREEN_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_GREEN_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_RED_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_RED_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final BlockItem LUMINOUS_BLACK_CARPET = new BlockItem(LuminousWoolBlocks.LUMINOUS_BLACK_CARPET, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS));
+
     public static void registerItems() {
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_white_wool"), LUMINOUS_WHITE_WOOL);
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_orange_wool"), LUMINOUS_ORANGE_WOOL);
@@ -44,6 +61,23 @@ public class LuminousWoolItems {
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_green_wool"), LUMINOUS_GREEN_WOOL);
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_red_wool"), LUMINOUS_RED_WOOL);
         Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_black_wool"), LUMINOUS_BLACK_WOOL);
+
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_white_carpet"), LUMINOUS_WHITE_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_orange_carpet"), LUMINOUS_ORANGE_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_magenta_carpet"), LUMINOUS_MAGENTA_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_light_blue_carpet"), LUMINOUS_LIGHT_BLUE_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_yellow_carpet"), LUMINOUS_YELLOW_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_lime_carpet"), LUMINOUS_LIME_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_pink_carpet"), LUMINOUS_PINK_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_gray_carpet"), LUMINOUS_GRAY_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_light_gray_carpet"), LUMINOUS_LIGHT_GRAY_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_cyan_carpet"), LUMINOUS_CYAN_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_purple_carpet"), LUMINOUS_PURPLE_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_blue_carpet"), LUMINOUS_BLUE_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_brown_carpet"), LUMINOUS_BROWN_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_green_carpet"), LUMINOUS_GREEN_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_red_carpet"), LUMINOUS_RED_CARPET);
+        Registry.register(Registry.ITEM, new Identifier(LuminousWool.MOD_ID, "luminous_black_carpet"), LUMINOUS_BLACK_CARPET);
     }
 
 }

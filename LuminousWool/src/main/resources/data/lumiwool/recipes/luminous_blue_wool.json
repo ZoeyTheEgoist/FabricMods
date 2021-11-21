@@ -1,5 +1,6 @@
 {
   "type": "crafting_shapeless",
+  "group": "luminous_wool",
   "ingredients": [
     {
       "item": "minecraft:glow_ink_sac"

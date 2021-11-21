@@ -1,4 +1,6 @@
 {
+  "advancements.husbandry.make_wool_glow.title": "Glowpunk",
+  "advancements.husbandry.make_wool_glow.description": "Directly apply glow ink to wool",
   "block.lumiwool.luminous_white_wool" : "Luminous White Wool",
   "block.lumiwool.luminous_orange_wool" : "Luminous Orange Wool",
   "block.lumiwool.luminous_magenta_wool" : "Luminous Magenta Wool",
@@ -14,5 +16,21 @@
   "block.lumiwool.luminous_brown_wool" : "Luminous Brown Wool",
   "block.lumiwool.luminous_green_wool" : "Luminous Green Wool",
   "block.lumiwool.luminous_red_wool" : "Luminous Red Wool",
-  "block.lumiwool.luminous_black_wool" : "Luminous Black Wool"
+  "block.lumiwool.luminous_black_wool" : "Luminous Black Wool",
+  "block.lumiwool.luminous_white_carpet" : "Luminous White Carpet",
+  "block.lumiwool.luminous_orange_carpet" : "Luminous Orange Carpet",
+  "block.lumiwool.luminous_magenta_carpet" : "Luminous Magenta Carpet",
+  "block.lumiwool.luminous_light_blue_carpet" : "Luminous Light Blue Carpet",
+  "block.lumiwool.luminous_yellow_carpet" : "Luminous Yellow Carpet",
+  "block.lumiwool.luminous_lime_carpet" : "Luminous Lime Carpet",
+  "block.lumiwool.luminous_pink_carpet" : "Luminous Pink Carpet",
+  "block.lumiwool.luminous_gray_carpet" : "Luminous Gray Carpet",
+  "block.lumiwool.luminous_light_gray_carpet" : "Luminous Light Gray Carpet",
+  "block.lumiwool.luminous_cyan_carpet" : "Luminous Cyan Carpet",
+  "block.lumiwool.luminous_purple_carpet" : "Luminous Purple Carpet",
+  "block.lumiwool.luminous_blue_carpet" : "Luminous Blue Carpet",
+  "block.lumiwool.luminous_brown_carpet" : "Luminous Brown Carpet",
+  "block.lumiwool.luminous_green_carpet" : "Luminous Green Carpet",
+  "block.lumiwool.luminous_red_carpet" : "Luminous Red Carpet",
+  "block.lumiwool.luminous_black_carpet" : "Luminous Black Carpet"
 }

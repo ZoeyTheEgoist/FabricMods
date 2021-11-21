@@ -1,4 +1,6 @@
 {
+  "advancements.husbandry.make_wool_glow.title": "Glowpunk",
+  "advancements.husbandry.make_wool_glow.description": "Applica l'inchiostro luminescente alla lana",
   "block.lumiwool.luminous_white_wool" : "Lana bianca luminescente",
   "block.lumiwool.luminous_orange_wool" : "Lana arancione luminescente",
   "block.lumiwool.luminous_magenta_wool" : "Lana magenta luminescente",

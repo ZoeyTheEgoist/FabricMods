@@ -40,6 +40,23 @@ public class LuminousWool implements ModInitializer {
             .put(Blocks.GREEN_WOOL, LuminousWoolBlocks.LUMINOUS_GREEN_WOOL)
             .put(Blocks.RED_WOOL, LuminousWoolBlocks.LUMINOUS_RED_WOOL)
             .put(Blocks.BLACK_WOOL, LuminousWoolBlocks.LUMINOUS_BLACK_WOOL)
+            //carpet
+            .put(Blocks.WHITE_CARPET, LuminousWoolBlocks.LUMINOUS_WHITE_CARPET)
+            .put(Blocks.ORANGE_CARPET, LuminousWoolBlocks.LUMINOUS_ORANGE_CARPET)
+            .put(Blocks.MAGENTA_CARPET, LuminousWoolBlocks.LUMINOUS_MAGENTA_CARPET)
+            .put(Blocks.LIGHT_BLUE_CARPET, LuminousWoolBlocks.LUMINOUS_LIGHT_BLUE_CARPET)
+            .put(Blocks.YELLOW_CARPET, LuminousWoolBlocks.LUMINOUS_YELLOW_CARPET)
+            .put(Blocks.LIME_CARPET, LuminousWoolBlocks.LUMINOUS_LIME_CARPET)
+            .put(Blocks.PINK_CARPET, LuminousWoolBlocks.LUMINOUS_PINK_CARPET)
+            .put(Blocks.GRAY_CARPET, LuminousWoolBlocks.LUMINOUS_GRAY_CARPET)
+            .put(Blocks.LIGHT_GRAY_CARPET, LuminousWoolBlocks.LUMINOUS_LIGHT_GRAY_CARPET)
+            .put(Blocks.CYAN_CARPET, LuminousWoolBlocks.LUMINOUS_CYAN_CARPET)
+            .put(Blocks.PURPLE_CARPET, LuminousWoolBlocks.LUMINOUS_PURPLE_CARPET)
+            .put(Blocks.BLUE_CARPET, LuminousWoolBlocks.LUMINOUS_BLUE_CARPET)
+            .put(Blocks.BROWN_CARPET, LuminousWoolBlocks.LUMINOUS_BROWN_CARPET)
+            .put(Blocks.GREEN_CARPET, LuminousWoolBlocks.LUMINOUS_GREEN_CARPET)
+            .put(Blocks.RED_CARPET, LuminousWoolBlocks.LUMINOUS_RED_CARPET)
+            .put(Blocks.BLACK_CARPET, LuminousWoolBlocks.LUMINOUS_BLACK_CARPET)
             .build();
 
 
@@ -55,7 +72,7 @@ public class LuminousWool implements ModInitializer {
                 var pos = hitresult.getBlockPos();
                 var block = world.getBlockState(pos);
 
-                if (block.isIn(BlockTags.WOOL)) {
+                if (block.isIn(BlockTags.WOOL) || block.isIn(BlockTags.CARPETS)) {
 
                     var luminous = WOOL_TO_LUMINOUS_WOOL.get(block.getBlock());
                     if(luminous != null) {

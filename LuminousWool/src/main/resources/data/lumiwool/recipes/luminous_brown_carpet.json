@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shapeless",
+  "group": "luminous_carpet",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_ink_sac"
+    },
+    {
+      "item": "minecraft:brown_carpet"
+    }
+  ],
+  "result": {
+    "item": "lumiwool:luminous_brown_carpet"
+  }
+}
