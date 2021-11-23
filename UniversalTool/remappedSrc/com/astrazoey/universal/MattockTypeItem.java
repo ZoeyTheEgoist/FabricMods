@@ -10,12 +10,10 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
-import net.minecraft.item.Item.Settings;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.Vanishable;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -67,16 +65,6 @@ public class MattockTypeItem extends ToolItem implements Vanishable {
     }
 
     public boolean isSuitableFor(BlockState state) {
-        /*
-        int i = this.getMaterial().getMiningLevel();
-        if (i < 3 && state.isIn(BlockTags.NEEDS_DIAMOND_TOOL)) {
-            return false;
-        } else if (i < 2 && state.isIn(BlockTags.NEEDS_IRON_TOOL)) {
-            return false;
-        } else {
-            return i < 1 && state.isIn(BlockTags.NEEDS_STONE_TOOL) ? false : state.isIn(this.effectiveBlocks);
-        }*/
-
         return true;
     }
 }
