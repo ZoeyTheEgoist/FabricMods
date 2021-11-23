@@ -32,11 +32,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     float damageRemainder = 1.0f;
     float damageThreshold = Config.playerHealthThreshold;
 
-    @Inject(method = "applyDamage", at = @At("HEAD"))
+    @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
     public void getPlayerHealth(DamageSource source, float amount, CallbackInfo ci) {
         playerHealth = this.getHealth();
         damageAmount = amount;
-        validBraceSource = !source.isFromFalling() && !source.isOutOfWorld() && !source.isFallingBlock();
+
+        if(source.isFromFalling() || source.isOutOfWorld() || source.isFallingBlock()) {
+            validBraceSource = false;
+        } else {
+            validBraceSource = true;
+        }
     }
 
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V"), index = 0)

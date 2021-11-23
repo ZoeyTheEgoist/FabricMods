@@ -13,7 +13,7 @@ public class SecondChance implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-
+		/*
 		//Registers Config
 		Identifier identifier = new Identifier(MOD_ID);
 		ServerLifecycleEvents.SERVER_STARTING.register(identifier, callbacks -> {
@@ -26,7 +26,7 @@ public class SecondChance implements ModInitializer {
 			initializeConfig();
 		});
 
-
+		 */
 
 	}
 
