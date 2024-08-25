@@ -25,11 +25,9 @@ public class DispenserBehaviorMixin {
 
         ItemStack emptyBucketStack = new ItemStack(Items.BUCKET);
 
-
-
         FluidModificationItem fluidModificationItem = (FluidModificationItem) stack.getItem();
-        BlockPos blockPos = pointer.pos().offset(pointer.state().get(DispenserBlock.FACING));
-        World world = pointer.world();
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        World world = pointer.getWorld();
         if (fluidModificationItem.placeFluid( null, world, blockPos, null)) {
             fluidModificationItem.onEmptied( null, world, stack, blockPos);
 
@@ -38,8 +36,7 @@ public class DispenserBehaviorMixin {
                 ItemStack newStack = stack.copy();
                 newStack.decrement(1);
 
-
-                if (((DispenserBlockEntity)pointer.blockEntity()).addToFirstFreeSlot(emptyBucketStack.copy()) < 0) {
+                if (((DispenserBlockEntity)pointer.getBlockEntity()).addToFirstFreeSlot(emptyBucketStack.copy()) < 0) {
                     fallbackBehavior.dispense(pointer, emptyBucketStack.copy());
                 }
 

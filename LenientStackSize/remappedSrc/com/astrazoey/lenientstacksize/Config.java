@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class Config {
 
-    private static final float MOD_VERSION = 1.4f;
+    private static final float MOD_VERSION = 1.2f;
 
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("lenientstacksize.properties");
 
