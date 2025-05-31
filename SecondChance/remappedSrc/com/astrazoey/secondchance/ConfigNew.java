@@ -5,8 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.EntityType;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.io.File;
 import java.io.FileReader;
@@ -21,7 +21,7 @@ public class ConfigNew {
     private static final File configFile = FabricLoader.getInstance().getConfigDir().resolve("second_chance_config.json").toFile();
     private static final Path configFilePath = FabricLoader.getInstance().getConfigDir().resolve("second_chance_config.json");
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static LinkedHashMap<String, Float> configList;
+    private static LinkedHashMap<String, MobHealthConfig> configList;
 
     public static void save() {
         read();
@@ -44,7 +44,7 @@ public class ConfigNew {
 
             if(configList == null) {
                 ConfigNew.configFile.delete();
-                System.out.println("INDEXED: Config file is null and deleted. Generating new config.");
+                System.out.println("SECOND CHANCE: Config file is null and deleted. Generating new config.");
                 if(!generateNewConfigFile()) {
                     return false;
                 }
@@ -60,19 +60,20 @@ public class ConfigNew {
     public static void registerConfigListMobs() {
         for(int i = 0; i < configList.size(); i++) {
             Object configEntry = configList.keySet().toArray()[i];
-            Float mobHealthConfig = configList.get(configEntry);
+            MobHealthConfig mobHealthConfig = configList.get(configEntry);
             String mobName = (String) configEntry;
+            float healthThreshold = mobHealthConfig.damageThreshold;
 
 
-            System.out.println("Found entry at " + i + ". It is called \"" + mobName + "\" and has a threshold of " + mobHealthConfig + ".");
+            //System.out.println("Found entry at " + i + ". It is called \"" + mobName + "\" and has a threshold of " + mobHealthConfig + ".");
 
-            Identifier mobIdentifier = new Identifier(mobName);
+            Identifier mobIdentifier = Identifier.tryParse(mobName);
             ThreadLocal<Identifier> localMobIdentifier = new ThreadLocal<Identifier>();
             localMobIdentifier.set(mobIdentifier);
 
-            //EntityType<?> registerEntity = Registry.ENTITY_TYPE.get(localMobIdentifier.get());
+            EntityType<?> registerEntity = Registries.ENTITY_TYPE.getEntry(localMobIdentifier.get());
 
-
+            MobHealthInterface.setHealthType(registerEntity, new MobHealthType(new MobHealthType.Settings().healthThreshold(healthThreshold)));
 
 
         }
@@ -82,19 +83,19 @@ public class ConfigNew {
 
         if(modOutOfDate && Files.exists(configFilePath)) {
             try {
-                System.out.println("mod is out of date! resetting file!");
+                System.out.println("Second Chance is out of date! Resetting config file!");
                 Files.delete(configFilePath);
                 configList = null;
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Failed to delete config file.");
+                System.out.println("Second Chance: Failed to delete config file.");
                 return;
             }
         }
 
         if(ConfigNew.configFile.exists()) {
             if(!readConfigList()) {
-                System.out.println("Failed to read config list.");
+                System.out.println("Second Chance: Failed to read config list.");
                 return;
             }
         } else {
@@ -103,7 +104,7 @@ public class ConfigNew {
                 save();
             } catch (Exception e) {
                 if(!generateNewConfigFile()) {
-                    System.out.println("Failed to generate new config file");
+                    System.out.println("Second Chance: Failed to generate new config file");
                     return;
                 }
             }
@@ -124,6 +125,9 @@ public class ConfigNew {
         LinkedHashMap<String, MobHealthConfig> defaultConfig = new LinkedHashMap<>();
 
 
+        //Utils
+        addConfigEntry(defaultConfig, "minecraft:allay", 13.5f);
+
         //Pets
         addConfigEntry(defaultConfig, "minecraft:wolf", 4f);
         addConfigEntry(defaultConfig, "minecraft:parrot", 3f);
@@ -142,6 +146,7 @@ public class ConfigNew {
         addConfigEntry(defaultConfig, "minecraft:zombie_horse", 15f);
         addConfigEntry(defaultConfig, "minecraft:llama", 15f);
         addConfigEntry(defaultConfig, "minecraft:trader_llama", 15f);
+        addConfigEntry(defaultConfig, "minecraft:camel", 15f);
 
         //Golens
         addConfigEntry(defaultConfig, "minecraft:snow_golem", 2f);
@@ -154,7 +159,7 @@ public class ConfigNew {
                 gson.toJson(defaultConfig, writer);
             } catch (IOException e) {
                 System.out.println("SECOND CHANCE: Could not generate new config file!");
-                throw new RuntimeException("Could not save config file", e);
+                throw new RuntimeException("Second Chance: Could not save config file", e);
             }
         } else {
             System.out.println("SECOND CHANCE: Directory does not exist!");

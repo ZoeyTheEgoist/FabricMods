@@ -1,8 +1,8 @@
 {
   "required": true,
-  "minVersion": "0.8-SNAPSHOT",
+  "minVersion": "0.8.5-SNAPSHOT",
   "package": "com.astrazoey.secondchance.mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "PlayerEntityMixin",
     "LivingEntityMixin",

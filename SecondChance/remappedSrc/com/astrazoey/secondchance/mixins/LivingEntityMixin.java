@@ -1,13 +1,14 @@
 package com.astrazoey.secondchance.mixins;
 
-import com.astrazoey.secondchance.Config;
 import com.astrazoey.secondchance.MobHealthInterface;
 import com.astrazoey.secondchance.MobHealthType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity {
+public abstract class LivingEntityMixin extends Entity implements MobHealthInterface {
 
 
     float entityHealth;
@@ -32,49 +33,21 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow public abstract float getHealth();
 
-    @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
-    public void getEntityHealth(DamageSource source, float amount, CallbackInfo ci) {
+    @Inject(method = "applyDamage", at = @At("HEAD"))
+    public void getEntityHealth(ServerWorld world, DamageSource source, float amount, CallbackInfo ci) {
 
-        EntityType entityType = this.getType();
+        EntityType<?> entityType = this.getType();
 
         entityHealth = this.getHealth();
         damageAmount = amount;
         damageRemainder = 1.0f;
 
-        validBraceSource = !source.isFromFalling() && !source.isOutOfWorld() && !source.isFallingBlock() && !(source.getAttacker() instanceof PlayerEntity);
+        validBraceSource = !source.isOf(DamageTypes.FALL) && !source.isOf(DamageTypes.OUT_OF_WORLD) && !source.isOf(DamageTypes.FALLING_BLOCK) && !source.isOf(DamageTypes.FALLING_STALACTITE) && !source.isOf(DamageTypes.FALLING_ANVIL) && !(source.getAttacker() instanceof PlayerEntity);
 
         if(entityType != null) {
             MobHealthType mobHealthType = MobHealthInterface.getHealthType(entityType);
             damageThreshold = mobHealthType.getHealthThreshold();
         }
-
-
-        /*
-        if(entityType == EntityType.WOLF) {
-            damageThreshold = Config.wolfHealthThreshold;
-        } else if (entityType == EntityType.PARROT) {
-            damageThreshold = Config.parrotHealthThreshold;
-        } else if (entityType == EntityType.CAT) {
-            damageThreshold = Config.catHealthThreshold;
-        } else if ((entityType == EntityType.VILLAGER)
-                || (entityType == EntityType.WANDERING_TRADER)) {
-            damageThreshold = Config.villagerHealthThreshold;
-        } else if (entityType == EntityType.AXOLOTL) {
-            damageThreshold = Config.axolotlHealthThreshold;
-        } else if ((entityType == EntityType.HORSE)
-                || (entityType == EntityType.DONKEY)
-                || (entityType == EntityType.SKELETON_HORSE)
-                || (entityType == EntityType.ZOMBIE_HORSE)
-                || (entityType == EntityType.MULE)
-                || (entityType == EntityType.LLAMA)
-                || (entityType == EntityType.TRADER_LLAMA)){
-            damageThreshold = Config.mountHealthThreshold;
-        } else if (entityType == EntityType.SNOW_GOLEM) {
-            damageThreshold = Config.snowGolemHealthThreshold;
-        } else if (entityType == EntityType.IRON_GOLEM) {
-            damageThreshold = Config.ironGolemHealthThreshold;
-        }
-        */
 
     }
 

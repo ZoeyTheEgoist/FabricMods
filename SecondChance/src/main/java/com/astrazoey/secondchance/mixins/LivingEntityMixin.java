@@ -6,8 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,7 +35,8 @@ public abstract class LivingEntityMixin extends Entity implements MobHealthInter
     @Shadow public abstract float getHealth();
 
     @Inject(method = "applyDamage", at = @At("HEAD"))
-    public void getEntityHealth(DamageSource source, float amount, CallbackInfo ci) {
+    @Dynamic
+    public void getEntityHealth(ServerWorld world, DamageSource source, float amount, CallbackInfo ci) {
 
         EntityType<?> entityType = this.getType();
 
@@ -40,7 +44,7 @@ public abstract class LivingEntityMixin extends Entity implements MobHealthInter
         damageAmount = amount;
         damageRemainder = 1.0f;
 
-        validBraceSource = !source.isFromFalling() && !source.isOutOfWorld() && !source.isFallingBlock() && !(source.getAttacker() instanceof PlayerEntity);
+        validBraceSource = !source.isOf(DamageTypes.FALL) && !source.isOf(DamageTypes.OUT_OF_WORLD) && !source.isOf(DamageTypes.FALLING_BLOCK) && !source.isOf(DamageTypes.FALLING_STALACTITE) && !source.isOf(DamageTypes.FALLING_ANVIL) && !(source.getAttacker() instanceof PlayerEntity);
 
         if(entityType != null) {
             MobHealthType mobHealthType = MobHealthInterface.getHealthType(entityType);
@@ -52,6 +56,7 @@ public abstract class LivingEntityMixin extends Entity implements MobHealthInter
 
 
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"), index = 0)
+    @Dynamic
     private float adjustFinalHealth(float amount) {
         if(amount <= 0.0f && entityHealth >= damageThreshold && validBraceSource) {
             amount = damageRemainder;

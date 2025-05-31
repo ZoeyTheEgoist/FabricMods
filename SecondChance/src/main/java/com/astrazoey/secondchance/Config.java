@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class Config {
 
-    private static final float MOD_VERSION = 1.2f;
+    private static final float MOD_VERSION = 1.5f;
 
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("second-chance.properties");
 
@@ -47,12 +47,12 @@ public class Config {
 
         if(modOutOfDate && Files.exists(CONFIG_PATH)) {
             try {
-                System.out.println("Mod is out of date! Resetting file!");
+                System.out.println("Second Chance: Mod is out of date! Resetting config file!");
                 modVersion = MOD_VERSION; //update mod version
                 Files.delete(CONFIG_PATH);
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Failed to delete config file.");
+                System.out.println("Second Chance: Failed to delete config file.");
                 return;
             }
         }
@@ -93,6 +93,7 @@ public class Config {
         return amount == null ? defaultOption : Float.parseFloat(amount);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static boolean defaultBoolean(String bool, boolean defaultOption) {
         return bool == null ? defaultOption : Boolean.parseBoolean(bool);
     }

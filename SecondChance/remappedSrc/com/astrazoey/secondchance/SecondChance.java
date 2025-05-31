@@ -13,11 +13,11 @@ public class SecondChance implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		/*
+
 		//Registers Config
-		Identifier identifier = new Identifier(MOD_ID);
+		Identifier identifier = Identifier.tryParse(MOD_ID);
 		ServerLifecycleEvents.SERVER_STARTING.register(identifier, callbacks -> {
-			System.out.println("SECOND CHANCE: Starting starting. Loading config.");
+			System.out.println("SECOND CHANCE: Starting. Loading config.");
 			initializeConfig();
 		});
 
@@ -26,7 +26,7 @@ public class SecondChance implements ModInitializer {
 			initializeConfig();
 		});
 
-		 */
+
 
 	}
 

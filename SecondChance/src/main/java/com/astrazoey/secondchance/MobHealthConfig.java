@@ -11,6 +11,7 @@ public class MobHealthConfig {
         this.damageThreshold = damageThreshold;
     }
 
+    @SuppressWarnings("all")
     public void setDamageThreshold(float damageThreshold) {
         this.damageThreshold=damageThreshold;
     }

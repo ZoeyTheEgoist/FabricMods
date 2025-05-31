@@ -2,8 +2,6 @@ package com.astrazoey.secondchance;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 
 public class SecondChance implements ModInitializer {
@@ -15,9 +13,9 @@ public class SecondChance implements ModInitializer {
 
 
 		//Registers Config
-		Identifier identifier = new Identifier(MOD_ID);
+		Identifier identifier = Identifier.of(MOD_ID);
 		ServerLifecycleEvents.SERVER_STARTING.register(identifier, callbacks -> {
-			System.out.println("SECOND CHANCE: Starting starting. Loading config.");
+			System.out.println("SECOND CHANCE: Starting. Loading config.");
 			initializeConfig();
 		});
 
