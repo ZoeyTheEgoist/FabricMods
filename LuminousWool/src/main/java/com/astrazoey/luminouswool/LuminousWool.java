@@ -15,13 +15,18 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.tag.BlockTags;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class LuminousWool implements ModInitializer {
 
     public static final String MOD_ID = "lumiwool";
+
+    //public static final Map<Block, Block> WOOL_TO_LUMINOUS_WOOL = new HashMap<>();
+
 
     public static final ImmutableMap<Block, Block> WOOL_TO_LUMINOUS_WOOL = ImmutableMap.<Block, Block>builder()
             .put(Blocks.WHITE_WOOL, LuminousWoolBlocks.LUMINOUS_WHITE_WOOL)
@@ -40,6 +45,7 @@ public class LuminousWool implements ModInitializer {
             .put(Blocks.GREEN_WOOL, LuminousWoolBlocks.LUMINOUS_GREEN_WOOL)
             .put(Blocks.RED_WOOL, LuminousWoolBlocks.LUMINOUS_RED_WOOL)
             .put(Blocks.BLACK_WOOL, LuminousWoolBlocks.LUMINOUS_BLACK_WOOL)
+
             //carpet
             .put(Blocks.WHITE_CARPET, LuminousWoolBlocks.LUMINOUS_WHITE_CARPET)
             .put(Blocks.ORANGE_CARPET, LuminousWoolBlocks.LUMINOUS_ORANGE_CARPET)
@@ -57,14 +63,17 @@ public class LuminousWool implements ModInitializer {
             .put(Blocks.GREEN_CARPET, LuminousWoolBlocks.LUMINOUS_GREEN_CARPET)
             .put(Blocks.RED_CARPET, LuminousWoolBlocks.LUMINOUS_RED_CARPET)
             .put(Blocks.BLACK_CARPET, LuminousWoolBlocks.LUMINOUS_BLACK_CARPET)
+
             .build();
+
+
 
 
     @Override
     public void onInitialize() {
-
         LuminousWoolBlocks.registerBlocks();
-        LuminousWoolItems.registerItems();
+
+
 
         UseBlockCallback.EVENT.register((player, world, hand, hitresult) -> {
             if (player.getStackInHand(hand).getItem() == Items.GLOW_INK_SAC) {
@@ -72,7 +81,7 @@ public class LuminousWool implements ModInitializer {
                 var pos = hitresult.getBlockPos();
                 var block = world.getBlockState(pos);
 
-                if (block.isIn(BlockTags.WOOL) || block.isIn(BlockTags.CARPETS)) {
+                if (block.isIn(BlockTags.WOOL) || block.isIn(BlockTags.WOOL_CARPETS)) {
 
                     var luminous = WOOL_TO_LUMINOUS_WOOL.get(block.getBlock());
                     if(luminous != null) {
@@ -89,7 +98,7 @@ public class LuminousWool implements ModInitializer {
                         Item item = heldItem.getItem();
                         player.incrementStat(Stats.USED.getOrCreateStat(item));
                         if (player instanceof ServerPlayerEntity) {
-                            Criteria.ITEM_USED_ON_BLOCK.test((ServerPlayerEntity)player, pos, heldItem);
+                            Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)player, pos, heldItem);
                         }
 
                         //Decrement Glow Ink if not in creative mode
